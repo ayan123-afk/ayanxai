@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Professor Ayan AI Toolkit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;600;700&family=Rajdhani:wght@500;700&family=Zen+Dots&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      background: linear-gradient(to bottom right, #000000, #001f3f);
+      color: white;
+      text-align: center;
+    }
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .login-box {
+      background: #0b0b2a;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0, 174, 255, 0.5);
+      max-width: 350px;
+      width: 100%;
+      border: 2px solid #007bff;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #00bfff;
+      text-shadow: 0 0 5px #00bfff;
+    }
+    p {
+      font-size: 15px;
+      margin-bottom: 20px;
+      color: #a0cfff;
+    }
+    input[type="text"], input[type="password"] {
+      padding: 12px;
+      margin: 10px 0;
+      width: 90%;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+    }
+    #error-message {
+      color: #ff6b6b;
+      font-size: 13px;
+      margin-top: -5px;
+    }
+    button {
+      padding: 12px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #339cff;
+    }
+    .dashboard {
+      display: none;
+      padding: 2rem;
+      animation: fadeIn 2s ease-in-out;
+      border: 2px solid #00bfff;
+      margin: 30px;
+      border-radius: 20px;
+      background: #101020;
+      box-shadow: 0 0 30px #007bff;
+    }
+    .dashboard h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 24px;
+      color: #00ffff;
+      overflow: hidden;
+      white-space: nowrap;
+      margin: 0 auto 20px;
+      letter-spacing: .15em;
+      animation:
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
+      border-right: .15em solid cyan;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: cyan; }
+    }
+    .tool-button {
+      display: block;
+      margin: 15px auto;
+      padding: 15px;
+      width: 300px;
+      background: linear-gradient(to right, #002fff, #00eaff);
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      color: white;
+      font-size: 1.1rem;
+      font-family: 'Rajdhani', sans-serif;
+      cursor: pointer;
+      transition: transform 0.4s, box-shadow 0.3s;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+    .tool-button:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 20px rgba(0, 191, 255, 0.8);
+    }
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px #00bfff; }
+      100% { box-shadow: 0 0 30px #339cff; }
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #a0cfff;
+    }
+    .logout-button, .developer-button {
+      margin-top: 20px;
+      background: #ff004c;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 300px;
+      border-radius: 12px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .developer-button {
+      background: #00bcd4;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container" id="loginContainer">
+    <div class="login-box">
+      <h1>Professor Ayan AI Toolkit</h1>
+      <p>Unleash Your Creative Potential</p>
+      <input type="text" id="username" placeholder="Enter Your Name" />
+      <input type="password" id="password" placeholder="Password" />
+      <p id="error-message"></p>
+      <button onclick="login()">Access Dashboard</button>
+    </div>
+  </div>
+
+  <div class="dashboard" id="dashboard">
+    <h1 id="dashboardTitle">WELCOME TO THE PROFESSOR AYAN TOOLKIT</h1>
+    <div id="tools"></div>
+    <button class="logout-button" onclick="logout()">Logout</button>
+    <button class="developer-button" onclick="window.open('https://ayanxportfolio.vercel.app', '_blank')">More About Developer</button>
+    <div class="footer">
+      &copy; 2025 Professor Ayan. All rights reserved.
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      const password = document.getElementById('password').value;
+      const errorMessage = document.getElementById('error-message');
+      if (password === 'PROFESSORAYAN') {
+        document.getElementById('loginContainer').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        errorMessage.textContent = '';
+      } else {
+        errorMessage.textContent = 'Incorrect password. Try again.';
+      }
+    }
+
+    function logout() {
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('loginContainer').style.display = 'flex';
+      document.getElementById('password').value = '';
+    }
+
+    function openLink(url) {
+      window.open(url, '_blank');
+    }
+
+    const toolLinks = [
+      ['AI Chatbot', 'https://www.mediafire.com/file/06f6fe8kfxsg1gd/_AI_TOOLKIT_BY_AYAN_18904522.apk/file'],
+      ['Poetry Generator', 'https://www.mediafire.com/file/gakfq659ygvcgaj/_Poetry_Generator_18906373_%25281%2529.apk/file'],
+      ['AI Universe', 'https://www.mediafire.com/file/64rra79uhkrq8on/Ayan_Universal_AI.apk/file'],
+      ['AI Universe With Pro Features', 'https://www.mediafire.com/file/k8ex3ueqls8l2ju/Ayan_Universal_AI_.apk/file'],
+      ['Subject Questions Solver', 'https://www.mediafire.com/file/9zvo81ljb98syjk/Ayan_Subject_Solver_AI.apk/file'],
+      ['Prompt Generator (Premium)', 'https://www.mediafire.com/file/at9umz7v3ibrv70/Ayan_Prompt_Generator_AI.apk/file'],
+      ['Ayan Digital Studio (Premium Tools)', 'https://www.mediafire.com/file/dgqortnin2uwm3o/Ayan_Digital_Studio.apk/file'],
+      ['AI Converters (Pro)', 'https://www.mediafire.com/file/1md71kls7k3z16d/Ayan_AI_Converters.apk/file'],
+      ['AI Image Generator', 'https://www.mediafire.com/file/2ejaj94mh22xqbh/AI_Image_Generator.apk/file'],
+      ['AI Calculator Hub', 'https://www.mediafire.com/file/53l7jufrvgi3zgr/AI_Calculators_Hub.apk/file']
+    ];
+
+    const toolsContainer = document.getElementById('tools');
+    toolLinks.forEach((tool) => {
+      const btn = document.createElement('button');
+      btn.className = 'tool-button';
+      btn.textContent = tool[0];
+      btn.onclick = () => openLink(tool[1]);
+      toolsContainer.appendChild(btn);
+    });
+  </script>
+</body>
+</html>
