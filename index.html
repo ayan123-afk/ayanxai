@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Professor Ayan AI Toolkit</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;600;700&family=Rajdhani:wght@500;700&family=Zen+Dots&display=swap" rel="stylesheet">
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://i.postimg.cc/qRt8VBgj/Logo-with-Neon-Accents.png" />
   <style>
     body {
@@ -21,44 +20,45 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      padding: 1rem;
     }
     .login-box {
       background: #0b0b2a;
-      padding: 2.5rem;
+      padding: 2rem;
       border-radius: 20px;
       box-shadow: 0 0 40px rgba(0, 174, 255, 0.5);
-      max-width: 400px;
       width: 100%;
+      max-width: 360px;
       border: 2px solid #007bff;
     }
     h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 36px;
+      font-size: 28px;
       margin-bottom: 15px;
       color: #00bfff;
       text-shadow: 0 0 5px #00bfff;
     }
     p {
-      font-size: 18px;
-      margin-bottom: 25px;
+      font-size: 16px;
+      margin-bottom: 20px;
       color: #a0cfff;
     }
     input[type="text"], input[type="password"] {
-      padding: 15px;
-      margin: 12px 0;
-      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      width: 100%;
       border-radius: 10px;
       border: none;
       outline: none;
-      font-size: 18px;
+      font-size: 16px;
     }
     #error-message {
       color: #ff6b6b;
-      font-size: 16px;
+      font-size: 14px;
       margin-top: -5px;
     }
     button {
-      padding: 15px;
+      padding: 12px;
       background-color: #007bff;
       border: none;
       color: white;
@@ -66,7 +66,7 @@
       font-weight: bold;
       cursor: pointer;
       width: 100%;
-      font-size: 18px;
+      font-size: 16px;
       transition: background-color 0.3s ease;
     }
     button:hover {
@@ -74,22 +74,22 @@
     }
     .dashboard {
       display: none;
-      padding: 3rem;
+      padding: 2rem 1rem;
       animation: fadeIn 2s ease-in-out;
       border: 2px solid #00bfff;
-      margin: 30px;
+      margin: 20px;
       border-radius: 20px;
       background: #101020;
       box-shadow: 0 0 30px #007bff;
     }
     .dashboard h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 30px;
+      font-size: 22px;
       color: #00ffff;
       overflow: hidden;
       white-space: nowrap;
       margin: 0 auto 20px;
-      letter-spacing: .15em;
+      letter-spacing: .1em;
       animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
       border-right: .15em solid cyan;
     }
@@ -107,15 +107,16 @@
     }
     .tool-button {
       display: block;
-      margin: 20px auto;
-      padding: 18px;
-      width: 320px;
+      margin: 15px auto;
+      padding: 14px;
+      width: 90%;
+      max-width: 320px;
       background: linear-gradient(to right, #002fff, #00eaff);
       border: none;
       border-radius: 12px;
       font-weight: bold;
       color: white;
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       font-family: 'Rajdhani', sans-serif;
       cursor: pointer;
       transition: transform 0.4s, box-shadow 0.3s;
@@ -130,20 +131,21 @@
       100% { box-shadow: 0 0 30px #339cff; }
     }
     .footer {
-      margin-top: 40px;
-      font-size: 16px;
+      margin-top: 30px;
+      font-size: 14px;
       color: #a0cfff;
     }
     .logout-button, .developer-button {
-      margin-top: 25px;
+      margin-top: 20px;
       background: #ff004c;
       color: white;
       border: none;
-      padding: 15px;
-      width: 320px;
+      padding: 14px;
+      width: 90%;
+      max-width: 320px;
       border-radius: 12px;
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.1rem;
+      font-size: 1rem;
       cursor: pointer;
     }
     .developer-button {
@@ -158,13 +160,16 @@
       <p>Unleash Your Creative Potential</p>
       <input type="text" id="username" placeholder="Enter Your Name" />
       <input type="password" id="password" placeholder="Password" />
+      <label style="font-size: 13px; display: block; margin-top: -5px;">
+        <input type="checkbox" id="togglePassword" /> Show Password
+      </label>
       <p id="error-message"></p>
       <button onclick="login()">Access Dashboard</button>
     </div>
   </div>
 
   <div class="dashboard" id="dashboard">
-    <h1 id="dashboardTitle">WELCOME TO THE PROFESSOR AYAN AI TOOLKIT</h1>
+    <h1 id="dashboardTitle">WELCOME TO THE PROFESSOR AYAN TOOLKIT</h1>
     <div id="tools"></div>
     <button class="logout-button" onclick="logout()">Logout</button>
     <button class="developer-button" onclick="window.open('https://ayanxportfolio.vercel.app', '_blank')">More About Developer</button>
@@ -185,6 +190,23 @@
         errorMessage.textContent = 'Incorrect password. Try again.';
       }
     }
+
+    document.getElementById('togglePassword').addEventListener('change', function () {
+      const passwordField = document.getElementById('password');
+      passwordField.type = this.checked ? 'text' : 'password';
+    });
+
+    document.getElementById('password').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        login();
+      }
+    });
+
+    document.getElementById('username').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        login();
+      }
+    });
 
     function logout() {
       document.getElementById('dashboard').style.display = 'none';
