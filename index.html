@@ -34,6 +34,12 @@
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
+      transition: all 0.5s ease;
+    }
+    
+    body.light-theme {
+      background: linear-gradient(to bottom right, #f0f8ff, #d1e8ff);
+      color: #333;
     }
     
     body::before {
@@ -103,6 +109,19 @@
       backdrop-filter: blur(10px);
       position: relative;
       z-index: 10;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .light-theme .login-box {
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid var(--secondary);
+      color: #333;
+      box-shadow: 0 0 40px rgba(0, 174, 255, 0.3);
+    }
+    
+    .login-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 174, 255, 0.7);
     }
     
     .login-box::before {
@@ -143,6 +162,11 @@
       position: relative;
     }
     
+    .light-theme h1 {
+      color: #0066cc;
+      text-shadow: 0 0 10px rgba(0, 102, 204, 0.3), 0 0 20px rgba(0, 102, 204, 0.2);
+    }
+    
     .logo-container {
       display: flex;
       justify-content: center;
@@ -178,6 +202,10 @@
       line-height: 1.6;
     }
     
+    .light-theme p {
+      color: #555;
+    }
+    
     .input-group {
       position: relative;
       margin-bottom: 20px;
@@ -197,6 +225,13 @@
       transition: all 0.3s ease;
     }
     
+    .light-theme input[type="text"],
+    .light-theme input[type="password"] {
+      background: rgba(255, 255, 255, 0.8);
+      color: #333;
+      border: 1px solid rgba(0, 123, 255, 0.5);
+    }
+    
     input[type="text"]:focus, input[type="password"]:focus {
       border-color: var(--primary);
       box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
@@ -210,6 +245,10 @@
       color: var(--light);
     }
     
+    .light-theme .input-icon {
+      color: #666;
+    }
+    
     .password-toggle {
       position: absolute;
       right: 15px;
@@ -219,12 +258,20 @@
       cursor: pointer;
     }
     
+    .light-theme .password-toggle {
+      color: #666;
+    }
+    
     .remember-forgot {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-top: 10px;
       font-size: 14px;
+    }
+    
+    .light-theme .remember-forgot {
+      color: #555;
     }
     
     .remember {
@@ -239,6 +286,10 @@
       transition: color 0.3s;
     }
     
+    .light-theme .forgot {
+      color: #00a3cc;
+    }
+    
     .forgot:hover {
       color: var(--secondary);
       text-decoration: underline;
@@ -250,6 +301,7 @@
       margin-top: 10px;
       text-align: center;
       min-height: 20px;
+      font-weight: 600;
     }
     
     button {
@@ -303,6 +355,13 @@
       margin: 20px auto;
     }
     
+    .light-theme .dashboard {
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px solid #00a3cc;
+      box-shadow: 0 0 30px rgba(0, 123, 255, 0.3);
+      color: #333;
+    }
+    
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -327,6 +386,20 @@
       text-shadow: 0 0 10px var(--secondary);
     }
     
+    .light-theme .dashboard-title {
+      color: #0066cc;
+      text-shadow: 0 0 10px rgba(0, 102, 204, 0.3);
+    }
+    
+    .tool-counter {
+      font-size: 14px;
+      color: var(--light);
+    }
+    
+    .light-theme .tool-counter {
+      color: #666;
+    }
+    
     .dashboard-controls {
       display: flex;
       gap: 10px;
@@ -340,12 +413,21 @@
       border: 1px solid rgba(0, 123, 255, 0.3);
     }
     
+    .light-theme .search-container {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 123, 255, 0.5);
+    }
+    
     .search-container i {
       position: absolute;
       left: 12px;
       top: 50%;
       transform: translateY(-50%);
       color: var(--light);
+    }
+    
+    .light-theme .search-container i {
+      color: #666;
     }
     
     .search-container input {
@@ -355,6 +437,10 @@
       outline: none;
       color: white;
       width: 250px;
+    }
+    
+    .light-theme .search-container input {
+      color: #333;
     }
     
     .tools-grid {
@@ -373,6 +459,11 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
+    }
+    
+    .light-theme .tool-card {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 123, 255, 0.5);
     }
     
     .tool-card:hover {
@@ -415,11 +506,19 @@
       color: var(--lighter);
     }
     
+    .light-theme .tool-name {
+      color: #0066cc;
+    }
+    
     .tool-desc {
       font-size: 14px;
       color: var(--light);
       line-height: 1.5;
       margin-bottom: 15px;
+    }
+    
+    .light-theme .tool-desc {
+      color: #555;
     }
     
     .tool-tags {
@@ -437,6 +536,11 @@
       color: var(--lighter);
     }
     
+    .light-theme .tag {
+      background: rgba(0, 123, 255, 0.1);
+      color: #0066cc;
+    }
+    
     .dashboard-footer {
       display: flex;
       justify-content: space-between;
@@ -446,11 +550,6 @@
       margin-top: 30px;
       padding-top: 20px;
       border-top: 1px solid rgba(0, 123, 255, 0.3);
-    }
-    
-    .tool-counter {
-      font-size: 14px;
-      color: var(--light);
     }
     
     .logout-button, .developer-button {
@@ -496,6 +595,10 @@
       padding: 15px;
     }
     
+    .light-theme .footer {
+      color: #666;
+    }
+    
     .theme-toggle {
       background: rgba(0, 0, 0, 0.4);
       border-radius: 10px;
@@ -509,9 +612,18 @@
       transition: all 0.3s ease;
     }
     
+    .light-theme .theme-toggle {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 123, 255, 0.5);
+    }
+    
     .theme-toggle:hover {
       background: rgba(0, 0, 0, 0.6);
       border-color: var(--primary);
+    }
+    
+    .light-theme .theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.9);
     }
     
     .notification {
@@ -531,6 +643,12 @@
       display: flex;
       align-items: center;
       gap: 10px;
+    }
+    
+    .light-theme .notification {
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
+      border-left: 4px solid var(--success);
     }
     
     .notification.show {
@@ -760,6 +878,12 @@
       createParticles();
       renderTools();
       setupEventListeners();
+      
+      // Check if user should be remembered
+      if (localStorage.getItem('rememberMe') === 'true') {
+        document.getElementById('username').value = localStorage.getItem('username') || '';
+        document.getElementById('rememberMe').checked = true;
+      }
     }
     
     // Setup event listeners
@@ -822,6 +946,9 @@
         toolCard.addEventListener('click', () => openLink(tool.link));
         toolsContainer.appendChild(toolCard);
       });
+      
+      document.getElementById('toolCounter').textContent = `${toolData.length} tools available`;
+      document.getElementById('filteredToolCounter').textContent = `Showing ${toolData.length} of ${toolData.length} tools`;
     }
     
     // Filter tools based on search
@@ -836,7 +963,7 @@
         
         if (toolName.includes(searchTerm.toLowerCase()) || 
             toolDesc.includes(searchTerm.toLowerCase()) || 
-            toolTags.some(tag => tag.includes(searchTerm.toLowerCase())) {
+            toolTags.some(tag => tag.includes(searchTerm.toLowerCase()))) {
           tool.style.display = 'block';
           visibleCount++;
         } else {
@@ -852,6 +979,7 @@
     function login() {
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
+      const rememberMe = document.getElementById('rememberMe').checked;
       const errorMessage = document.getElementById('error-message');
       
       if (!username) {
@@ -864,20 +992,27 @@
         const notification = document.getElementById('notification');
         notification.classList.add('show');
         
+        // Update dashboard title with username
+        document.getElementById('dashboardTitle').textContent = `WELCOME, ${username.toUpperCase()}`;
+        
+        // Save user preference if remember me is checked
+        if (rememberMe) {
+          localStorage.setItem('rememberMe', 'true');
+          localStorage.setItem('username', username);
+        } else {
+          localStorage.removeItem('rememberMe');
+          localStorage.removeItem('username');
+        }
+        
+        // Show dashboard and hide login
+        document.getElementById('loginContainer').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        errorMessage.textContent = '';
+        
         // Hide notification after 3 seconds
         setTimeout(() => {
           notification.classList.remove('show');
         }, 3000);
-        
-        // Update dashboard title with username
-        document.getElementById('dashboardTitle').textContent = `WELCOME, ${username.toUpperCase()}`;
-        
-        // Show dashboard after a delay
-        setTimeout(() => {
-          document.getElementById('loginContainer').style.display = 'none';
-          document.getElementById('dashboard').style.display = 'block';
-          errorMessage.textContent = '';
-        }, 1000);
       } else {
         errorMessage.textContent = 'Incorrect password. Try again.';
       }
@@ -888,7 +1023,6 @@
       document.getElementById('dashboard').style.display = 'none';
       document.getElementById('loginContainer').style.display = 'flex';
       document.getElementById('password').value = '';
-      document.getElementById('username').value = '';
     }
     
     // Open tool link
@@ -898,6 +1032,7 @@
     
     // Toggle theme
     function toggleTheme() {
+      const body = document.body;
       const themeToggle = document.getElementById('themeToggle');
       const icon = themeToggle.querySelector('i');
       
@@ -905,14 +1040,12 @@
         // Switch to light theme
         icon.classList.remove('fa-moon');
         icon.classList.add('fa-sun');
-        document.body.style.background = 'linear-gradient(to bottom right, #f0f8ff, #d1e8ff)';
-        document.body.style.color = '#333';
+        body.classList.add('light-theme');
       } else {
         // Switch to dark theme
         icon.classList.remove('fa-sun');
         icon.classList.add('fa-moon');
-        document.body.style.background = 'linear-gradient(to bottom right, #000000, #001f3f)';
-        document.body.style.color = 'white';
+        body.classList.remove('light-theme');
       }
     }
     
