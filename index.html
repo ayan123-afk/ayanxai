@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Space+Grotesk:wght@400;600;700&family=Rajdhani:wght@500;700&family=Zen+Dots&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="icon" type="image/png" href="https://i.postimg.cc/qRt8VBgj/Logo-with-Neon-Accents.png" />
-  <style>
+  <style>                             
     :root {
       --primary: #007bff;
       --secondary: #00bfff;
@@ -374,6 +374,18 @@
       margin-bottom: 30px;
       flex-wrap: wrap;
       gap: 15px;
+      animation: slideInDown 0.8s ease-out;
+    }
+    
+    @keyframes slideInDown {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
     
     .dashboard-title {
@@ -394,6 +406,7 @@
     .tool-counter {
       font-size: 14px;
       color: var(--light);
+      animation: fadeIn 1s ease-in-out 0.3s both;
     }
     
     .light-theme .tool-counter {
@@ -403,6 +416,7 @@
     .dashboard-controls {
       display: flex;
       gap: 10px;
+      animation: fadeIn 1s ease-in-out 0.4s both;
     }
     
     .search-container {
@@ -459,6 +473,19 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
+      animation: toolCardAppear 0.6s ease-out;
+      animation-fill-mode: both;
+    }
+    
+    @keyframes toolCardAppear {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
     
     .light-theme .tool-card {
@@ -467,8 +494,8 @@
     }
     
     .tool-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 123, 255, 0.4);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 123, 255, 0.6);
       border-color: var(--primary);
     }
     
@@ -491,11 +518,21 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+    
+    .tool-card:hover .tool-icon {
+      transform: scale(1.1) rotate(10deg);
     }
     
     .tool-icon i {
       font-size: 24px;
       color: white;
+      transition: transform 0.3s ease;
+    }
+    
+    .tool-card:hover .tool-icon i {
+      transform: scale(1.1);
     }
     
     .tool-name {
@@ -504,6 +541,11 @@
       font-weight: 700;
       margin-bottom: 10px;
       color: var(--lighter);
+      transition: color 0.3s ease;
+    }
+    
+    .tool-card:hover .tool-name {
+      color: var(--accent);
     }
     
     .light-theme .tool-name {
@@ -515,6 +557,11 @@
       color: var(--light);
       line-height: 1.5;
       margin-bottom: 15px;
+      transition: color 0.3s ease;
+    }
+    
+    .tool-card:hover .tool-desc {
+      color: var(--lighter);
     }
     
     .light-theme .tool-desc {
@@ -534,6 +581,12 @@
       border-radius: 20px;
       font-size: 12px;
       color: var(--lighter);
+      transition: all 0.3s ease;
+    }
+    
+    .tool-card:hover .tag {
+      background: rgba(0, 123, 255, 0.4);
+      transform: translateY(-2px);
     }
     
     .light-theme .tag {
@@ -550,6 +603,12 @@
       margin-top: 30px;
       padding-top: 20px;
       border-top: 1px solid rgba(0, 123, 255, 0.3);
+      animation: fadeIn 1s ease-in-out 0.5s both;
+    }
+    
+    .footer-buttons {
+      display: flex;
+      gap: 20px; /* Increased gap between buttons */
     }
     
     .logout-button, .developer-button {
@@ -563,28 +622,58 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      position: relative;
+      overflow: hidden;
     }
     
     .logout-button {
       background: var(--danger);
       color: white;
+      animation: pulseDanger 2s infinite;
     }
     
     .logout-button:hover {
       background: #e00042;
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(255, 0, 76, 0.3);
+      animation: none;
+    }
+    
+    @keyframes pulseDanger {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 76, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(255, 0, 76, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 0, 76, 0);
+      }
     }
     
     .developer-button {
       background: var(--accent);
       color: black;
+      animation: pulseAccent 2s infinite;
     }
     
     .developer-button:hover {
       background: #00d5ff;
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(0, 234, 255, 0.3);
+      animation: none;
+    }
+    
+    @keyframes pulseAccent {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 234, 255, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(0, 234, 255, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 234, 255, 0);
+      }
     }
     
     .footer {
@@ -593,6 +682,7 @@
       font-size: 14px;
       color: var(--light);
       padding: 15px;
+      animation: fadeIn 1s ease-in-out 0.6s both;
     }
     
     .light-theme .footer {
@@ -610,6 +700,19 @@
       cursor: pointer;
       border: 1px solid rgba(0, 123, 255, 0.3);
       transition: all 0.3s ease;
+      animation: pulseToggle 3s infinite;
+    }
+    
+    @keyframes pulseToggle {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 191, 255, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 0 10px rgba(0, 191, 255, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 191, 255, 0);
+      }
     }
     
     .light-theme .theme-toggle {
@@ -620,6 +723,7 @@
     .theme-toggle:hover {
       background: rgba(0, 0, 0, 0.6);
       border-color: var(--primary);
+      transform: rotate(15deg);
     }
     
     .light-theme .theme-toggle:hover {
@@ -643,6 +747,16 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      animation: notificationSlideOut 0.5s ease forwards;
+    }
+    
+    @keyframes notificationSlideOut {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(150%);
+      }
     }
     
     .light-theme .notification {
@@ -652,7 +766,16 @@
     }
     
     .notification.show {
-      transform: translateX(0);
+      animation: notificationSlideIn 0.5s ease forwards;
+    }
+    
+    @keyframes notificationSlideIn {
+      from {
+        transform: translateX(150%);
+      }
+      to {
+        transform: translateX(0);
+      }
     }
     
     .notification i {
@@ -681,6 +804,11 @@
       .dashboard-footer {
         flex-direction: column;
         align-items: flex-start;
+      }
+      
+      .footer-buttons {
+        flex-direction: column;
+        gap: 10px;
       }
     }
   </style>
@@ -745,7 +873,7 @@
     
     <div class="dashboard-footer">
       <div class="tool-counter" id="filteredToolCounter">Showing 10 of 10 tools</div>
-      <div>
+      <div class="footer-buttons">
         <button class="developer-button" onclick="window.open('https://ayanxportfolio.vercel.app', '_blank')">
           <i class="fas fa-code"></i> About Developer
         </button>
@@ -930,7 +1058,7 @@
       const toolsContainer = document.getElementById('tools');
       toolsContainer.innerHTML = '';
       
-      toolData.forEach((tool) => {
+      toolData.forEach((tool, index) => {
         const toolCard = document.createElement('div');
         toolCard.className = 'tool-card';
         toolCard.innerHTML = `
@@ -944,6 +1072,7 @@
           </div>
         `;
         toolCard.addEventListener('click', () => openLink(tool.link));
+        toolCard.style.animationDelay = `${index * 0.05}s`;
         toolsContainer.appendChild(toolCard);
       });
       
